@@ -29,7 +29,7 @@ jobs:
 
     - name: Build executable with PyInstaller and UPX
       run: |
-        python -m nuitka --mingw64 resize.py
+        python -m nuitka --onefile resize.py
 
     - name: Get Tag Name
       if: startsWith(github.ref, 'refs/tags/')
