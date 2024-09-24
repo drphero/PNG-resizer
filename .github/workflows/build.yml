@@ -1,9 +1,12 @@
-name: Build Windows Executable
+name: Build and Release Windows Executable
 
 on:
   workflow_dispatch:
   push:
     branches: [ main ]
+  # Trigger the workflow when a new tag is pushed
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -24,10 +27,25 @@ jobs:
 
     - name: Build executable
       run: |
-        pyinstaller --onefile --noconsole resize.py
+        pyinstaller --onefile --noconsole resize_images_gui.py
 
-    - name: Upload executable
-      uses: actions/upload-artifact@v3
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: resize
-        path: dist/resize.exe
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/resize.exe
+        asset_name: resize.exe
+        asset_content_type: application/octet-stream
