@@ -40,7 +40,7 @@ jobs:
       id: create_release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "./dist/resize.exe"
+        artifacts: "./resize.exe"
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: ${{ env.TAG_NAME }}
         name: Release ${{ env.TAG_NAME }}
