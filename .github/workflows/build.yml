@@ -27,7 +27,7 @@ jobs:
 
     - name: Build executable
       run: |
-        pyinstaller --onefile --noconsole resize_images_gui.py
+        pyinstaller --onefile --noconsole resize.py
 
     - name: Create Release
       id: create_release
