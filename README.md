@@ -1,7 +1,3 @@
-Certainly! Below is a **README** intended for users who will be using the executable version of your Image Resizer application. This README focuses on providing clear instructions for end-users on how to use the application without needing to interact with the command prompt or deal with the source code.
-
----
-
 # Image Resizer GUI
 
 A simple and user-friendly application that resizes all PNG images in a selected folder to sizes specified by you. The application allows you to enter multiple sizes and processes all images accordingly, saving the resized images in a designated subfolder.
